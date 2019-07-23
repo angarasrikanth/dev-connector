@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
+import { Link } from "react-router-dom";
+
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
+  }
+
+  createProfile() {
+    this.props.history.push("");
   }
   render() {
     const { user } = this.props.auth;
@@ -21,7 +27,10 @@ class Dashboard extends Component {
           <p className="lead">
             <i className="fas fa-user">Welcome {user && user.name}</i>
           </p>
-          {profile ? <p>has</p> : <p>has not</p>}
+          {profile ? <p>has profile</p> : <p>has not profile </p>}
+          <Link to="/create-profile" className="btn btn-lg btn-light">
+            createProfile
+          </Link>
         </div>
       );
     }
